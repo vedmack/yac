@@ -1,0 +1,49 @@
+version: '3.4'
+
+services:
+  mongo:
+    container_name: mongo_db_cont
+    image: mongo:latest
+    restart: always
+    volumes:
+      - ./data:/data/db
+    networks:
+      customnetwork:
+        ipv4_address: 172.20.0.2
+    ports:
+      - '27017:27017'
+  server:
+    container_name: server_cont
+    image: danielreznick/calserver
+    build:
+      context: server
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    networks:
+      customnetwork:
+        ipv4_address: 172.20.0.3
+    ports:
+      - 3000:3000
+    links:
+      - mongo
+  client:
+    container_name: front_cont
+    image: danielreznick/calfront
+    build:
+      context: calendar
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    networks:
+      customnetwork:
+        ipv4_address: 172.20.0.4
+    ports:
+      - 8000:8000
+    links:
+      - server
+networks:
+  customnetwork:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
