@@ -14,7 +14,7 @@ services:
       - '27017:27017'
   server:
     container_name: server_cont
-    image: danielreznick/calserver
+    image: danielreznick/calserver:latest
     build:
       context: server
       dockerfile: ./Dockerfile
@@ -29,7 +29,7 @@ services:
       - mongo
   client:
     container_name: front_cont
-    image: danielreznick/calfront
+    image: danielreznick/calfront:latest
     build:
       context: calendar
       dockerfile: ./Dockerfile

@@ -6,6 +6,9 @@ Install / Run instructions
 =====
 
 - Fork / Download repo
+- If using docker then run the following command
+   - docker-compose up
+- Without docker, read below on how to run
 - Enter server folder and run the following commands
    - npm install (to install are dependencies)
    - node index.js
