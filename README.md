@@ -16,7 +16,9 @@ Install / Run instructions
 - Enter calendar folder and run the following commands
    - npm install (to install are dependencies)
    - npm start
-
+   
+- Front Runs on http://localhost:8000/   
+- Backend/Server Runs on http://localhost:3000/
 
 Features:
 =====
